@@ -1,0 +1,65 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-primary: #f1faee;
+  --color-secondary: #457b9d;
+  --color-accent: #1d3557;
+  --color-muted: #a8dadc;
+}
+
+body {
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
+  display: grid;
+  gap: 1em;
+  place-items: center;
+  min-height: 100vh;
+  padding-block: 2em;
+  padding-inline: 1em;
+}
+
+.recipe-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.recipe-card {
+  display: flex;
+  flex-direction: row;
+  gap: 0.6em;
+  padding: 1.4em;
+  max-width: 600px;
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+  border-radius: 0.4em;
+  justify-content: space-between;
+}
+
+.recipe-card .data {
+  display: flex;
+  color: var(--color-primary);
+  flex-direction: column;
+  gap: 0.6em;
+  flex: 0.8;
+}
+.recipe-card .name {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+.recipe-card .tagline {
+  color: var(--color-muted);
+}
+.recipe-card .description {
+  font-size: 1.2rem;
+}
+.recipe-card img {
+  height: 200px;
+  margin-right: 2em;
+}
