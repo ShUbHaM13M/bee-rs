@@ -1,10 +1,6 @@
 
-use yew::prelude::*;
 use yew::Properties;
 use serde::{Deserialize, Serialize};
-
-// use gloo_console::log;
-// use wasm_bindgen::JsValue;
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -81,14 +77,7 @@ pub struct Temp {
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Fermentation {
-    pub temp: Temp2,
-}
-
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct Temp2 {
-    pub value: i64,
-    pub unit: String,
+    pub temp: Temp,
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
@@ -117,39 +106,8 @@ pub struct Amount {
 #[serde(rename_all = "camelCase")]
 pub struct Hop {
     pub name: String,
-    pub amount: Amount2,
+    pub amount: Amount,
     pub add: String,
     pub attribute: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct Amount2 {
-    pub value: f64,
-    pub unit: String,
-}
-
-#[derive(Properties, Clone, PartialEq)]
-pub struct Props {
-    pub recipe: RecipeData,
-}
-
-#[function_component(RecipeCard)]
-pub fn recipe_card(props: &Props) -> Html {
-    let recipe = props.recipe.clone();
-
-    // let object = JsValue::from(props.recipe.name.clone());
-    // log!(object);
-
-    html!(
-        <div class={classes!("recipe-card")}>
-            <div class={classes!("data")}>
-                <span class={classes!("name")}>{recipe.name.clone()}</span>
-                <span class={classes!("tagline")}>{recipe.tagline}</span>
-                <hr />
-                <span class={classes!("description")}>{recipe.description}</span>
-            </div>
-            <img src={recipe.image_url} alt={recipe.name.clone()} />
-        </div>
-    )
-}

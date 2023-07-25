@@ -1,13 +1,36 @@
 
 use yew::prelude::*;
+use yew_router::prelude::*;
 use gloo_net::http::Request;
 
 mod components;
-use components::recipe::{RecipeCard, RecipeData};
+use components::recipe_card::RecipeCard;
+use components::recipe_info::RecipeInfo;
+use components::recipe::RecipeData;
 
-#[function_component]
-fn App() -> Html {
+#[derive(Clone, Routable, PartialEq)]
+enum Route {
+    #[at("/")]
+    Home,
 
+    #[at("/:id")]
+    RecipeInfo { id: i64 },
+
+    #[not_found]
+    #[at("/404")]
+    NotFound,
+}
+
+fn switch(routes: Route) -> Html {
+    match routes {
+        Route::Home => html!( <RecipeList /> ),
+        Route::RecipeInfo { id } => html!( <RecipeInfo id={id} /> ),
+        Route::NotFound => html!( <h1>{"404, Not Found!"}</h1> ),
+    }
+}
+
+#[function_component(RecipeList)]
+fn recipe_list () -> Html {
     let recipes: UseStateHandle<Vec<RecipeData>> = use_state(|| vec![]);
 
     {
@@ -28,7 +51,7 @@ fn App() -> Html {
         }, ());
     }
 
-    html! {
+    html!(
         <div class={classes!("recipe-list")}>
             { 
                 recipes.iter().map(| recipe | {
@@ -36,9 +59,18 @@ fn App() -> Html {
                 }).collect::<Html>()
             }
         </div>
+    )
+}
+
+#[function_component(Main)]
+fn app() -> Html {
+    html! {
+        <BrowserRouter>
+            <Switch<Route> render={switch} />
+        </BrowserRouter>
     }
 }
 
 fn main() {
-    yew::Renderer::<App>::new().render();
+    yew::Renderer::<Main>::new().render();
 }
