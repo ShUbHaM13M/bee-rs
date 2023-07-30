@@ -5,8 +5,8 @@ use gloo_net::http::Request;
 
 mod components;
 use components::recipe_card::RecipeCard;
-use components::recipe_info::RecipeInfo;
 use components::recipe::RecipeData;
+use components::recipe_info::RecipeInfo;
 
 #[derive(Clone, Routable, PartialEq)]
 enum Route {
@@ -14,7 +14,7 @@ enum Route {
     Home,
 
     #[at("/:id")]
-    RecipeInfo { id: i64 },
+    RecipeInfo { id: u32 },
 
     #[not_found]
     #[at("/404")]

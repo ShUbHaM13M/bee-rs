@@ -1,5 +1,4 @@
 
-use yew::Properties;
 use serde::{Deserialize, Serialize};
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
@@ -35,6 +34,12 @@ pub struct RecipeData {
     pub brewers_tips: String,
     #[serde(rename = "contributed_by")]
     pub contributed_by: String,
+}
+
+impl RecipeData {
+    pub fn get_string(&self) -> String {
+        return serde_json::to_string_pretty(&self).unwrap()
+    }
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]

@@ -4,13 +4,12 @@ use yew::prelude::*;
 
 use crate::components::recipe::RecipeData;
 
-
-//use gloo_console::log;
-//use wasm_bindgen::JsValue;
+// use gloo_console::log;
+// use wasm_bindgen::JsValue;
 
 #[derive(Properties, Clone, PartialEq)]
 pub struct Props {
-    pub id: i64
+    pub id: u32
 }
 
 #[function_component(RecipeInfo)]
@@ -40,7 +39,9 @@ pub fn recipe_info(props: &Props) -> Html {
 
     html!(
         <div class={classes!("container")}>
-            {recipe.name.clone()}
+            <pre>
+                {recipe.get_string()}
+            </pre>
         </div>
     )
 }

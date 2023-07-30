@@ -75,3 +75,11 @@ body {
   max-width: fit-content;
   color: var(--color-primary);
 }
+
+.container {
+  max-width: 450px;
+  max-height: 500px;
+  overflow: auto;
+  background: #121212;
+  color: white;
+}
